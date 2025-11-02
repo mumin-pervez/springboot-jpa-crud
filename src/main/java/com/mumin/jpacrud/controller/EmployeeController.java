@@ -1,6 +1,9 @@
 package com.mumin.jpacrud.controller;
 
 import com.mumin.jpacrud.entity.Employee;
+import com.mumin.jpacrud.service.EmployeeService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,10 +16,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
+  @Autowired
+  private EmployeeService employeeService;
+
   // localhost:8090/employees
-  @GetMapping("/employees")
+ /* @GetMapping("/employees")
   public String getEmployees() {
     return "All employees in the list";
+  }*/
+
+  // localhost:8090/employees
+  @GetMapping("/employees")
+  public List<Employee> getEmployees() {
+    return employeeService.getEmployees();
   }
 
   // localhost:8090/employees/12
